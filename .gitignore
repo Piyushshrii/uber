@@ -1,0 +1,38 @@
+# === Global ignores ===
+node_modules/
+.env
+.DS_Store
+Thumbs.db
+*.log
+
+# === Backend-specific ignores ===
+Backend/node_modules/
+Backend/.env
+Backend/dump/
+Backend/coverage/
+Backend/*.log
+
+# If you use PM2 or similar
+Backend/pids/
+Backend/*.pid
+Backend/*.pid.lock
+
+# === Frontend-specific ignores ===
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+frontend/.cache/
+frontend/.vite/
+frontend/.next/
+frontend/coverage/
+frontend/*.log
+
+# === OS and Editor ignores ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === Docker-specific (if not committing overrides) ===
+docker-compose.override.yml
+*.local.yml
