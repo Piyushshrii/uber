@@ -36,3 +36,7 @@ frontend/*.log
 # === Docker-specific (if not committing overrides) ===
 docker-compose.override.yml
 *.local.yml
+
+# === k8s ignores
+k8s/secrets.yaml
+k8s/*secrets.yaml

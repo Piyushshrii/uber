@@ -1,12 +1,40 @@
-FROM node:14 AS build
-WORKDIR /usr/src/app
+FROM node:21 AS backend-builder
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 
-FROM gcr.io/distroless/nodejs:14
-WORKDIR /usr/src/app
-COPY --from=build /usr/src/app /usr/src/app
-RUN npm install --production
-EXPOSE 8080
-CMD ["index.js"]
+FROM node:21-slim
+WORKDIR /app
+COPY --from=backend-builder /app .
+EXPOSE 3000
+CMD ["node", "server.js"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

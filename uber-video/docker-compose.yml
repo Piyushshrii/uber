@@ -1,0 +1,16 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./Backend
+    ports:
+      - "3000:3000"
+    container_name: uber-backend
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    container_name: uber-frontend
+
