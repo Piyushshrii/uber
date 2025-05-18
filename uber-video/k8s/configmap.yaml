@@ -4,6 +4,6 @@ metadata:
   name: app-config
 data:
   PORT: "3000"
-  VITE_BASE_URL: "http://35.224.225.153:3000"
-  VITE_API_URL: "http://35.224.225.153:5000/api"
+  VITE_BASE_URL: "http://34.56.27.156:3000"
+  VITE_API_URL: "http://130.211.209.61:5000/api"
 

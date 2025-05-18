@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: piyushh69/uber-backend:v1
+          image: piyushh69/uber-backend:latest
           ports:
             - containerPort: 3000
           envFrom:
@@ -33,12 +33,11 @@ metadata:
   name: backend-service
   namespace: uber
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: backend
   ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
-      nodePort: 31100
 
