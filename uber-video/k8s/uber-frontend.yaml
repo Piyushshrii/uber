@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uber-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uber-frontend
+  template:
+    metadata:
+      labels:
+        app: uber-frontend
+    spec:
+      containers:
+        - name: uber-frontend
+          image: gcr.io/YOUR_PROJECT_ID/uber-frontend:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: uber-frontend-config
+                  key: VITE_API_URL
+            - name: VITE_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: uber-frontend-config
+                  key: VITE_BASE_URL
+            - name: VITE_GOOGLE_MAPS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: uber-frontend-secret
+                  key: vite-google-maps-api-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uber-frontend-service
+spec:
+  selector:
+    app: uber-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

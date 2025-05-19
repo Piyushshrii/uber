@@ -2,11 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: fullstack-ingress
-  namespace: uber
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx  # Or your custom class, e.g., nginx-custom
+  ingressClassName: nginx           # matches the IngressClass of your NGINX controller
   rules:
     - http:
         paths:
@@ -14,14 +13,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: backend-service
+                name: uber-backend-service
                 port:
-                  number: 3000
+                  number: 80        # servicePort defined in uber-backend-service
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: frontend-service
+                name: uber-frontend-service
                 port:
-                  number: 80
-
+                  number: 80        # servicePort defined in uber-frontend-service

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uber-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uber-backend
+  template:
+    metadata:
+      labels:
+        app: uber-backend
+    spec:
+      containers:
+        - name: uber-backend
+          image: gcr.io/YOUR_PROJECT_ID/uber-backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_CONNECT
+              value: mongodb://mongoadmin:password@mongo:27017/uber
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: uber-backend-secret
+                  key: jwt-secret
+            - name: PORT
+              value: "3000"
+            - name: GOOGLE_MAPS_API
+              valueFrom:
+                secretKeyRef:
+                  name: uber-backend-secret
+                  key: google-maps-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uber-backend-service
+spec:
+  selector:
+    app: uber-backend
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP
