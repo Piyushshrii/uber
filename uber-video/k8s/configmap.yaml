@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: uber-frontend-config
 data:
-  VITE_API_URL: http://localhost:5000/api
-  VITE_BASE_URL: http://localhost:3000
+  VITE_API_URL: http://35.238.38.176:5000/api
+  VITE_BASE_URL: http://35.238.38.176:3000

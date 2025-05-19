@@ -4,8 +4,8 @@ metadata:
   name: mongo-secret
 type: Opaque
 data:
-  mongo-user: bW9uZ29hZG1pbg==     # base64: mongoadmin
-  mongo-password: cGFzc3dvcmQ=     # base64: password
+  mongo-user: bW9uZ29hZG1pbg==       # base64: mongoadmin
+  mongo-password: cGFzc3dvcmQ=       # base64: password
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -37,6 +37,8 @@ spec:
           image: mongo:6.0
           ports:
             - containerPort: 27017
+          command: ["mongod"]
+          args: ["--bind_ip_all"]
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
@@ -66,4 +68,5 @@ spec:
   ports:
     - port: 27017
       targetPort: 27017
-  clusterIP: None  # Headless service for stable DNS inside cluster
+  type: ClusterIP   # Standard internal access service
+

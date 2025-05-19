@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: uber-backend
-          image: gcr.io/YOUR_PROJECT_ID/uber-backend:latest
+          image: piyushh69/uber-backend-app:v1
           ports:
             - containerPort: 3000
           env:

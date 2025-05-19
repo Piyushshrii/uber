@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: uber-frontend
-          image: gcr.io/YOUR_PROJECT_ID/uber-frontend:latest
+          image: piyushh69/uber-frontend-app:v1
           ports:
             - containerPort: 80
           env:
